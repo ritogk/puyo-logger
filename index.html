@@ -16,8 +16,14 @@
     We are using Node.js <span id="node-version"></span>, Chromium
     <span id="chrome-version"></span>, and Electron
     <span id="electron-version"></span>.
-
-    <!-- ���̃v���Z�X�ő��t�@�C���� require ���Ď��s���邱�Ƃ��ł��܂� -->
-    <script src="./renderer.js"></script>
+    <p><input id="captureScreens" type="button" value="Capture screens" /></p>
+    <div id="screenNames"></div>
+    <div id="screenInfo"></div>
+    <canvas id="thumbnailCanvas"></canvas>
+    <div id="screenVideos"></div>
+    <!-- <script>
+      // You can also require other files to run in this process
+      require("./renderer.js")
+    </script> -->
   </body>
 </html>

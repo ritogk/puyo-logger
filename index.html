@@ -9,21 +9,16 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Hello World!</title>
+    <title>ぷよぷよキャプチャー!</title>
   </head>
   <body>
     <h1>Hello Worlda!</h1>
     We are using Node.js <span id="node-version"></span>, Chromium
     <span id="chrome-version"></span>, and Electron
     <span id="electron-version"></span>.
-    <p><input id="captureScreens" type="button" value="Capture screens" /></p>
-    <div id="screenNames"></div>
-    <div id="screenInfo"></div>
-    <canvas id="thumbnailCanvas"></canvas>
-    <div id="screenVideos"></div>
-    <!-- <script>
-      // You can also require other files to run in this process
-      require("./renderer.js")
-    </script> -->
+    <video id="video" width="750" height="500" controls>
+      <source src="" type="video/mp4" />
+    </video>
+    <!-- <script src="./renderer.js"></script> -->
   </body>
 </html>

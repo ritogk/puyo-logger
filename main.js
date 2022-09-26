@@ -1,3 +1,11 @@
+var log = require("electron-log")
+process.on("uncaughtException", function (err) {
+  log.error("electron:event:uncaughtException")
+  log.error(err)
+  log.error(err.stack)
+  app.quit()
+})
+
 const { app, BrowserWindow } = require("electron")
 const path = require("path")
 let win
@@ -8,7 +16,7 @@ function createWindow() {
     width: 800,
     height: 800,
     webPreferences: {
-      nodeIntegration: true, //Electron6から必要らしい
+      nodeIntegration: true, //デフォルト設定だとレンダープロセスとメインプロセスで通信できない。trueでできるようになる
       preload: path.join(__dirname, "preload.js"),
     },
   })
@@ -41,5 +49,20 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
   if (win === null) {
     createWindow()
+  }
+})
+
+// メインプロセス
+const { desktopCapturer } = require("electron")
+
+// desktopCapturer
+//   .getSources({ types: ["window", "screen"] })
+desktopCapturer.getSources({ types: ["window"] }).then(async (sources) => {
+  for (const source of sources) {
+    if (source.name === "Puyo Puyo Champions") {
+      console.log(source)
+      win.webContents.send("SET_SOURCE", source.id)
+      return
+    }
   }
 })

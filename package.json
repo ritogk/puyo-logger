@@ -23,6 +23,7 @@
     "electron": "^20.2.0"
   },
   "dependencies": {
+    "electron-log": "^4.4.8",
     "jquery": "^3.6.1"
   }
 }

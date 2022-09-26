@@ -7,17 +7,6 @@ const path = require("path")
 // メインプロセス
 const { desktopCapturer } = require("electron")
 
-desktopCapturer
-  .getSources({ types: ["window", "screen"] })
-  .then(async (sources) => {
-    for (const source of sources) {
-      if (source.name === "Electron") {
-        mainWindow.webContents.send("SET_SOURCE", source.id)
-        return
-      }
-    }
-  })
-
 const createWindow = () => {
   // �u���E�U�E�C���h�E���쐬���܂��B
   const mainWindow = new BrowserWindow({

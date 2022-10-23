@@ -14,7 +14,7 @@ class FieldRecognition:
         img = self.generator_img(video_path, frame_index)
         self.field_img = img
 
-        self.split_masu(img)
+        self.field_img_list = self.split_masu(img)
         self.video_path = video_path
 
     def generator_img(self, video_path: str, frame_index: int) -> cv2.Mat:
@@ -24,7 +24,8 @@ class FieldRecognition:
         ref, frame = cap.read()
         return frame
 
-    def split_masu(self, field_img: cv2.Mat):
+    @classmethod
+    def split_masu(field_img: cv2.Mat):
         # マス目単位で分割
         field = field_img[30: 335, 90: 250]
 
@@ -125,7 +126,7 @@ class FieldRecognition:
         field_12_5 = row_12[0: 22, 96: 120]
         field_12_6 = row_12[0: 22, 120: 144]
 
-        self.field_img_list = [
+        field_img_list = [
             [field_1_1, field_1_2, field_1_3, field_1_4, field_1_5, field_1_6],
             [field_2_1, field_2_2, field_2_3, field_2_4, field_2_5, field_2_6],
             [field_3_1, field_3_2, field_3_3, field_3_4, field_3_5, field_3_6],
@@ -142,3 +143,4 @@ class FieldRecognition:
             [field_12_1, field_12_2, field_12_3,
                 field_12_4, field_12_5, field_12_6],
         ]
+        return field_img_list
